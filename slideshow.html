@@ -568,24 +568,29 @@
   .friction-stack .card p { margin: 0; }
   /* ---------- next slide ---------- */
   .next-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 18px;
+    margin: 12px 0;
+    flex: 1; min-height: 0;
   }
   .next-card {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 22px;
+    border-radius: 16px; padding: 28px 30px;
     position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
   }
   .next-card::before {
-    content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
     background: var(--grad);
   }
   .next-card .num {
-    font-size: 0.75rem; color: var(--muted); font-weight: 700;
-    letter-spacing: 0.1em; margin-bottom: 6px;
+    font-size: 0.78rem; color: var(--muted); font-weight: 700;
+    letter-spacing: 0.12em; margin-bottom: 10px;
   }
-  .next-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
-  .next-card p { font-size: 0.88rem; margin: 0; }
+  .next-card h3 { font-size: 1.35rem; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .next-card p { font-size: 1rem; line-height: 1.55; margin: 0; color: var(--text-dim); }
   .next-card {
     opacity: 0;
     transform: translateY(12px);
@@ -1051,7 +1056,7 @@
   <section class="slide" data-title="What's Next">
     <div class="slide-eyebrow">What's Next</div>
     <h1>The biggest loss is the <span class="grad-text">idea you never test.</span></h1>
-    <div class="next-grid" id="nextGrid" data-revealed="1" data-total="3">
+    <div class="next-grid" id="nextGrid" data-revealed="1" data-total="4">
       <div class="next-card is-revealed" data-step="1">
         <div class="num">01</div>
         <h3>Moving the needle</h3>
@@ -1067,10 +1072,16 @@
         <h3>The idea you never tested</h3>
         <p>Your intuition as a BA has product-grade potential. The biggest loss is not a flat result, it is keeping a good idea in your head and never letting it see the light.</p>
       </div>
+      <div class="next-card" data-step="4">
+        <div class="num">04</div>
+        <h3>Breaking the barrier</h3>
+        <p>A BA can ship without waiting on dev, PM, or UX allocations. End-to-end ownership turns "I have an idea" directly into "it is in production".</p>
+      </div>
     </div>
     <div class="reveal-hint" id="revealHint">
       <span class="reveal-dots">
         <span class="reveal-dot is-on"></span>
+        <span class="reveal-dot"></span>
         <span class="reveal-dot"></span>
         <span class="reveal-dot"></span>
       </span>

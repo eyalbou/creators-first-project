@@ -541,6 +541,9 @@
   /* ---------- compact slides for screenshot content ---------- */
   .slide.compact { padding-top: 26px; padding-bottom: 24px; }
   /* ---------- story carousel slide ---------- */
+  .story-slide-wrap h1.story-h1 {
+    font-size: 1.6rem; line-height: 1.2; margin: 4px 0 6px;
+  }
   .story-carousel {
     position: relative;
     flex: 1; min-height: 0;
@@ -563,7 +566,7 @@
     margin: 0;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    gap: 14px;
+    gap: 10px;
     opacity: 0; visibility: hidden;
     transition: opacity 0.32s ease;
     pointer-events: none;
@@ -571,13 +574,14 @@
   .story-slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
   .story-art {
     width: 100%;
-    height: 70%;
+    height: 85%;
+    max-width: 1100px;
     border-radius: 16px;
     border: 1px solid var(--border);
     background: linear-gradient(135deg, rgba(79,140,255,0.15), rgba(160,92,255,0.15));
     display: flex; align-items: center; justify-content: center;
     color: var(--text-dim); font-size: 0.95rem;
-    text-align: center; padding: 16px;
+    text-align: center; padding: 8px;
     overflow: hidden;
     box-shadow: 0 12px 40px rgba(0,0,0,0.25);
   }
@@ -676,7 +680,78 @@
     <div class="slide-num">01</div>
   </section>
 
-  <!-- 2. The Problem -->
+  <!-- 2. How it started (narrative carousel) -->
+  <section class="slide compact story-slide-wrap" data-title="How it started">
+    <div class="slide-eyebrow">How it started</div>
+    <h1 class="story-h1">How a side conversation became a <span class="grad-text">live experiment</span>.</h1>
+    <div class="story-carousel" id="storyCarousel" data-active="1" data-total="8">
+      <button class="story-nav prev" data-story-prev aria-label="Previous panel">&#10094;</button>
+      <div class="story-stage">
+        <figure class="story-slide is-active" data-idx="1">
+          <div class="story-art" data-fallback="Rodi has the lightbulb moment">
+            <img src="images/story-1-spark.png" alt="Rodi sees the funnel data with a lightbulb above his head" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">1</span><span><strong>The spark.</strong> Rodi sees the funnel data. Lightbulb.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="2">
+          <div class="story-art" data-fallback="Pitched to Miri. Out of scope.">
+            <img src="images/story-2-out-of-scope.png" alt="Rodi pitches Miri who explains Studio 2 has the runway" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">2</span><span><strong>Out of scope.</strong> Brings it to Miri. Studio 2 has the runway.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="3">
+          <div class="story-art" data-fallback="Eyal overhears and joins in">
+            <img src="images/story-3-eyal-joins.png" alt="Eyal overhears the conversation and raises a hand" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">3</span><span><strong>I'll build it.</strong> Eyal overhears, raises a hand.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="4">
+          <div class="story-art" data-fallback="Miri approves. Greenlit.">
+            <img src="images/story-4-greenlit.png" alt="Miri gives a warm approval to Eyal and Rodi" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">4</span><span><strong>Greenlit.</strong> Miri approves. Light governance, full ownership.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="5">
+          <div class="story-art" data-fallback="Rodi and Eyal in PM-labeled hats scoping the test">
+            <img src="images/story-6-pm-hats.png" alt="Rodi and Eyal wearing PM-labeled baseball caps, scoping the Blank vs Template question" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">5</span><span><strong>The PM hat.</strong> Rodi + Eyal scope: Blank only, Templates excluded.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="6">
+          <div class="story-art" data-fallback="Eyal dives into the Studio repo with Octocode">
+            <img src="images/story-5-octocode.png" alt="Eyal at a monitor with Octocode the friendly octopus exploring the repo" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">6</span><span><strong>Into the repo.</strong> Eyal + Octocode map Studio's git.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="7">
+          <div class="story-art" data-fallback="Rodi sketches the test plan while Nohar reviews Eyal's code">
+            <img src="images/story-7-plan-and-review.png" alt="Split scene: Rodi sketches the A/B test plan on a whiteboard while Nohar reviews Eyal's code" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">7</span><span><strong>Plan + review.</strong> Rodi drafts the A/B test. Nohar approves Eyal's code.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="8">
+          <div class="story-art" data-fallback="Rodi and Eyal launch the A/B test, dollar bills flying">
+            <img src="images/story-8-launch.png" alt="Rodi and Eyal celebrate launching the A/B test as cartoon dollar bills fly through the office" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">8</span><span><strong>Launch.</strong> Test live. Dollar bills in flight.</span></figcaption>
+        </figure>
+      </div>
+      <button class="story-nav next" data-story-next aria-label="Next panel">&#10095;</button>
+      <div class="story-dots" data-story-dots>
+        <button class="dot is-active" data-story-go="1" aria-label="Panel 1"></button>
+        <button class="dot" data-story-go="2" aria-label="Panel 2"></button>
+        <button class="dot" data-story-go="3" aria-label="Panel 3"></button>
+        <button class="dot" data-story-go="4" aria-label="Panel 4"></button>
+        <button class="dot" data-story-go="5" aria-label="Panel 5"></button>
+        <button class="dot" data-story-go="6" aria-label="Panel 6"></button>
+        <button class="dot" data-story-go="7" aria-label="Panel 7"></button>
+        <button class="dot" data-story-go="8" aria-label="Panel 8"></button>
+      </div>
+    </div>
+    <div class="slide-num">02</div>
+  </section>
+
+  <!-- 3. The Problem -->
   <section class="slide" data-title="The Problem">
     <div class="slide-eyebrow">The Problem</div>
     <h1>Most new users leave before <span class="grad-text">real engagement</span>.</h1>
@@ -730,10 +805,10 @@
     <div style="font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;text-align:right;margin-top:8px;">
       Source &middot; UJ first-session, 7d window &middot; Blank scoping query, 90d
     </div>
-    <div class="slide-num">02</div>
+    <div class="slide-num">03</div>
   </section>
 
-  <!-- 3. The Solution -->
+  <!-- 4. The Solution -->
   <section class="slide compact" data-title="The Solution">
     <div class="slide-eyebrow">The Solution</div>
     <h1>Open the Add Panel by default.</h1>
@@ -748,10 +823,10 @@
         <figcaption><span class="badge treatment">Treatment</span>Panel open. Image, Title, Button, Section, Gallery, Video -- all instantly clickable.</figcaption>
       </figure>
     </div>
-    <div class="slide-num">03</div>
+    <div class="slide-num">04</div>
   </section>
 
-  <!-- 4. The Precedent -->
+  <!-- 5. The Precedent -->
   <section class="slide compact" data-title="Precedent">
     <div class="slide-eyebrow">Precedent</div>
     <h1>A sibling surface <span class="grad-text">moved Premium by +7%.</span></h1>
@@ -775,10 +850,10 @@
         </div>
       </div>
     </div>
-    <div class="slide-num">04</div>
+    <div class="slide-num">05</div>
   </section>
 
-  <!-- 5. The Guardrails -->
+  <!-- 6. The Guardrails -->
   <section class="slide compact" data-title="Guardrails">
     <div class="slide-eyebrow">Strategic Guardrails &middot; Why Blank only</div>
     <h1>Same change, <span class="grad-text">opposite effect.</span></h1>
@@ -797,77 +872,6 @@
           On <strong>Blank sites</strong>, there is nothing to occlude. The panel adds pure affordance with zero cost.
         </div>
         <div class="closing-line">Context, not the component, decides.</div>
-      </div>
-    </div>
-    <div class="slide-num">05</div>
-  </section>
-
-  <!-- 6. How it started (narrative carousel) -->
-  <section class="slide compact" data-title="How it started">
-    <div class="slide-eyebrow">How it started</div>
-    <h1>How a side conversation became a <span class="grad-text">live experiment</span>.</h1>
-    <div class="story-carousel" id="storyCarousel" data-active="1" data-total="8">
-      <button class="story-nav prev" data-story-prev aria-label="Previous panel">&#10094;</button>
-      <div class="story-stage">
-        <figure class="story-slide is-active" data-idx="1">
-          <div class="story-art" data-fallback="Rodi has the lightbulb moment">
-            <img src="images/story-1-spark.png" alt="Rodi sees the funnel data with a lightbulb above his head" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">1</span><span><strong>The spark.</strong> Rodi sees the funnel data. Lightbulb.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="2">
-          <div class="story-art" data-fallback="Pitched to Miri. Out of scope.">
-            <img src="images/story-2-out-of-scope.png" alt="Rodi pitches Miri who explains Studio 2 has the runway" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">2</span><span><strong>Out of scope.</strong> Brings it to Miri. Studio 2 has the runway.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="3">
-          <div class="story-art" data-fallback="Eyal overhears and joins in">
-            <img src="images/story-3-eyal-joins.png" alt="Eyal overhears the conversation and raises a hand" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">3</span><span><strong>I'll build it.</strong> Eyal overhears, raises a hand.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="4">
-          <div class="story-art" data-fallback="Miri approves. Greenlit.">
-            <img src="images/story-4-greenlit.png" alt="Miri gives a warm approval to Eyal and Rodi" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">4</span><span><strong>Greenlit.</strong> Miri approves. Light governance, full ownership.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="5">
-          <div class="story-art" data-fallback="Eyal dives into the Studio repo with Octocode">
-            <img src="images/story-5-octocode.png" alt="Eyal at a monitor with Octocode the friendly octopus exploring the repo" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">5</span><span><strong>Into the repo.</strong> Eyal + Octocode map Studio's git.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="6">
-          <div class="story-art" data-fallback="Rodi and Eyal in PM-labeled hats scoping the test">
-            <img src="images/story-6-pm-hats.png" alt="Rodi and Eyal wearing PM-labeled baseball caps, scoping the Blank vs Template question" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">6</span><span><strong>The PM hat.</strong> Rodi + Eyal scope: Blank only, Templates excluded.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="7">
-          <div class="story-art" data-fallback="Rodi sketches the test plan while Nohar reviews Eyal's code">
-            <img src="images/story-7-plan-and-review.png" alt="Split scene: Rodi sketches the A/B test plan on a whiteboard while Nohar reviews Eyal's code" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">7</span><span><strong>Plan + review.</strong> Rodi drafts the A/B test. Nohar approves Eyal's code.</span></figcaption>
-        </figure>
-        <figure class="story-slide" data-idx="8">
-          <div class="story-art" data-fallback="Rodi and Eyal launch the A/B test, dollar bills flying">
-            <img src="images/story-8-launch.png" alt="Rodi and Eyal celebrate launching the A/B test as cartoon dollar bills fly through the office" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
-          </div>
-          <figcaption><span class="story-num">8</span><span><strong>Launch.</strong> Test live. Dollar bills in flight.</span></figcaption>
-        </figure>
-      </div>
-      <button class="story-nav next" data-story-next aria-label="Next panel">&#10095;</button>
-      <div class="story-dots" data-story-dots>
-        <button class="dot is-active" data-story-go="1" aria-label="Panel 1"></button>
-        <button class="dot" data-story-go="2" aria-label="Panel 2"></button>
-        <button class="dot" data-story-go="3" aria-label="Panel 3"></button>
-        <button class="dot" data-story-go="4" aria-label="Panel 4"></button>
-        <button class="dot" data-story-go="5" aria-label="Panel 5"></button>
-        <button class="dot" data-story-go="6" aria-label="Panel 6"></button>
-        <button class="dot" data-story-go="7" aria-label="Panel 7"></button>
-        <button class="dot" data-story-go="8" aria-label="Panel 8"></button>
       </div>
     </div>
     <div class="slide-num">06</div>

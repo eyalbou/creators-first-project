@@ -260,8 +260,8 @@
   /* definitions block */
   .def-block {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 22px;
-    display: flex; flex-direction: column; gap: 14px;
+    border-radius: 14px; padding: 16px 20px;
+    display: flex; flex-direction: column; gap: 10px;
     position: relative; overflow: hidden;
   }
   .def-block::before {
@@ -282,7 +282,7 @@
   }
   .def-block .def-group ul {
     margin: 0; padding: 0 0 0 14px; list-style: disc;
-    font-size: 0.78rem; color: var(--text); line-height: 1.55;
+    font-size: 0.74rem; color: var(--text); line-height: 1.45;
   }
   .def-block .def-group ul li::marker { color: var(--accent-1); }
   /* bet cta */
@@ -540,6 +540,90 @@
   }
   /* ---------- compact slides for screenshot content ---------- */
   .slide.compact { padding-top: 26px; padding-bottom: 24px; }
+  /* ---------- story carousel slide ---------- */
+  .story-carousel {
+    position: relative;
+    flex: 1; min-height: 0;
+    display: grid;
+    grid-template-columns: 56px 1fr 56px;
+    grid-template-rows: 1fr auto;
+    gap: 14px 12px;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .story-stage {
+    grid-column: 2; grid-row: 1;
+    position: relative;
+    width: 100%; height: 100%;
+    min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .story-slide {
+    position: absolute; inset: 0;
+    margin: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 14px;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.32s ease;
+    pointer-events: none;
+  }
+  .story-slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .story-art {
+    width: 100%;
+    height: 70%;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(79,140,255,0.15), rgba(160,92,255,0.15));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim); font-size: 0.95rem;
+    text-align: center; padding: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  }
+  .story-art img {
+    width: 100%; height: 100%; object-fit: contain; object-position: center;
+    border-radius: 12px;
+  }
+  .story-slide figcaption {
+    width: 100%; max-width: 80%;
+    font-size: 1rem; color: var(--text);
+    line-height: 1.45; text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .story-slide figcaption strong { color: var(--text); font-weight: 700; }
+  .story-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--grad); color: white;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
+  }
+  .story-nav {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 1.1rem;
+    cursor: pointer; transition: all 0.18s ease;
+    display: flex; align-items: center; justify-content: center;
+    justify-self: center;
+  }
+  .story-nav.prev { grid-column: 1; grid-row: 1; }
+  .story-nav.next { grid-column: 3; grid-row: 1; }
+  .story-nav:hover { border-color: var(--accent-1); background: var(--surface-2); transform: scale(1.05); }
+  .story-nav:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+  .story-dots {
+    grid-column: 1 / -1; grid-row: 2;
+    display: flex; gap: 8px; justify-content: center; align-items: center;
+  }
+  .story-dots .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); border: none; padding: 0;
+    cursor: pointer; transition: all 0.18s ease;
+  }
+  .story-dots .dot:hover { background: var(--text-dim); }
+  .story-dots .dot.is-active {
+    background: var(--grad);
+    width: 24px; border-radius: 4px;
+  }
   /* ---------- annotation overlay for treatment image ---------- */
   .treatment-annotation { position: relative; }
   .treatment-annotation::after {
@@ -555,7 +639,7 @@
 <body data-theme="dark">
 
 <header class="topbar">
-  <div class="brand">High Impact, Low Friction</div>
+  <div class="brand">Creators First Project</div>
   <nav class="nav-links" id="navLinks"></nav>
   <div class="nav-controls">
     <div class="group" title="Font size">
@@ -572,12 +656,11 @@
   <!-- 1. Title + hook -->
   <section class="slide title-slide" data-title="Title">
     <div class="eyebrow">Creators Initiative &middot; Studio Data</div>
-    <h1><span class="grad-text">High Impact, Low Friction.</span><br/>The Creators First Project.</h1>
-    <p class="subtitle">One change. Top of the funnel. A first-session A/B test on Blank sites, owned end-to-end by Creators.</p>
+    <h1><span class="grad-text">From Idea to A/B Test.</span></h1>
+    <p class="subtitle">A data-driven feature release, shipped end-to-end by Studio Data BA.</p>
     <div class="stat-strip">
       <div class="stat"><div class="v">~32%</div><div class="l">of new users we can reach</div></div>
-      <div class="stat"><div class="v">+7%</div><div class="l">Premium lift from the precedent</div></div>
-      <div class="stat"><div class="v">0</div><div class="l">PM days required</div></div>
+      <div class="stat"><div class="v">End-to-end</div><div class="l">performed by BA, idea to A/B test</div></div>
     </div>
     <div class="presenters">
       <div class="presenter-pill">
@@ -597,45 +680,42 @@
   <section class="slide" data-title="The Problem">
     <div class="slide-eyebrow">The Problem</div>
     <h1>Most new users leave before <span class="grad-text">real engagement</span>.</h1>
-    <p class="lede">A Blank site is opened, the builder loads, and the user is gone -- before they cross any meaningful engagement threshold in their first week.</p>
     <div class="problem-cols">
-      <div class="stat-block danger">
-        <div class="stat-eyebrow">Headline loss</div>
-        <div class="stat-big">70%</div>
-        <div class="stat-headline">don't reach Start Working in their first week.</div>
-        <div class="stat-sub">They never hit the depth threshold that signals real creation in the builder.</div>
-      </div>
       <div class="stat-block warn">
-        <div class="stat-eyebrow">Even earlier</div>
+        <div class="stat-eyebrow">Earlier in the funnel</div>
         <div class="stat-big">25%</div>
         <div class="stat-headline">don't even reach Start Exploring.</div>
         <div class="stat-sub">They open the builder, take no basic action, and leave -- the first-session bounce.</div>
-        <div class="stat-bottom">
-          <strong>32%</strong> of new users open a Blank site first &middot; the reachable population
-        </div>
+      </div>
+      <div class="stat-block danger">
+        <div class="stat-eyebrow">Deeper in the funnel</div>
+        <div class="stat-big">70%</div>
+        <div class="stat-headline">don't reach Start Working.</div>
+        <div class="stat-sub">Never place 8 components, add a library, or reach a published page.</div>
       </div>
       <div class="def-block">
         <div class="def-title">How we measure</div>
+        <div style="font-size:0.74rem;color:var(--text-dim);font-style:italic;margin-top:-6px;">Measured in the user's first 7 days &middot; earliest of any of:</div>
         <div class="def-group">
           <div class="def-name">Start Exploring</div>
-          <div class="def-rule">earliest of any of:</div>
           <ul>
             <li>2nd added component</li>
             <li>1st added media</li>
             <li>1st added page</li>
             <li>1st added library</li>
+            <li>2nd site created</li>
+            <li>1st completion date</li>
             <li>2nd session</li>
           </ul>
         </div>
         <div class="def-group">
           <div class="def-name">Start Working</div>
-          <div class="def-rule">earliest of any of:</div>
           <ul>
             <li>8th added component</li>
             <li>1st added library</li>
             <li>6th added media</li>
             <li>1st added page</li>
-            <li>1st completion</li>
+            <li>1st completion date</li>
           </ul>
         </div>
       </div>
@@ -674,11 +754,11 @@
   <!-- 4. The Precedent -->
   <section class="slide compact" data-title="Precedent">
     <div class="slide-eyebrow">Precedent</div>
-    <h1>This exact area <span class="grad-text">moved Premium</span> before.</h1>
+    <h1>A sibling surface <span class="grad-text">moved Premium by +7%.</span></h1>
     <div class="precedent-layout">
       <figure class="precedent-img-wrap" style="margin:0;">
         <img src="images/empty-state-precedent.png" alt="Prior Empty State A/B test inside the Section" />
-        <figcaption>Prior Empty State experiment -- icons exposed inside the Section ("Designed Section / Grid Layout / Add an Element").</figcaption>
+        <figcaption><strong style="color:var(--text);">Before:</strong> empty Section. <strong style="color:var(--text);">After:</strong> 3 starting-point icons ("Designed Section / Grid Layout / Add an Element") -> +7% Premium.</figcaption>
       </figure>
       <div class="lift-callout">
         <div>
@@ -722,7 +802,78 @@
     <div class="slide-num">05</div>
   </section>
 
-  <!-- 6. The Test (A/B Framework) -->
+  <!-- 6. How it started (narrative carousel) -->
+  <section class="slide compact" data-title="How it started">
+    <div class="slide-eyebrow">How it started</div>
+    <h1>How a side conversation became a <span class="grad-text">live experiment</span>.</h1>
+    <div class="story-carousel" id="storyCarousel" data-active="1" data-total="8">
+      <button class="story-nav prev" data-story-prev aria-label="Previous panel">&#10094;</button>
+      <div class="story-stage">
+        <figure class="story-slide is-active" data-idx="1">
+          <div class="story-art" data-fallback="Rodi has the lightbulb moment">
+            <img src="images/story-1-spark.png" alt="Rodi sees the funnel data with a lightbulb above his head" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">1</span><span><strong>The spark.</strong> Rodi sees the funnel data. Lightbulb.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="2">
+          <div class="story-art" data-fallback="Pitched to Miri. Out of scope.">
+            <img src="images/story-2-out-of-scope.png" alt="Rodi pitches Miri who explains Studio 2 has the runway" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">2</span><span><strong>Out of scope.</strong> Brings it to Miri. Studio 2 has the runway.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="3">
+          <div class="story-art" data-fallback="Eyal overhears and joins in">
+            <img src="images/story-3-eyal-joins.png" alt="Eyal overhears the conversation and raises a hand" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">3</span><span><strong>I'll build it.</strong> Eyal overhears, raises a hand.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="4">
+          <div class="story-art" data-fallback="Miri approves. Greenlit.">
+            <img src="images/story-4-greenlit.png" alt="Miri gives a warm approval to Eyal and Rodi" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">4</span><span><strong>Greenlit.</strong> Miri approves. Light governance, full ownership.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="5">
+          <div class="story-art" data-fallback="Eyal dives into the Studio repo with Octocode">
+            <img src="images/story-5-octocode.png" alt="Eyal at a monitor with Octocode the friendly octopus exploring the repo" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">5</span><span><strong>Into the repo.</strong> Eyal + Octocode map Studio's git.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="6">
+          <div class="story-art" data-fallback="Rodi and Eyal in PM-labeled hats scoping the test">
+            <img src="images/story-6-pm-hats.png" alt="Rodi and Eyal wearing PM-labeled baseball caps, scoping the Blank vs Template question" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">6</span><span><strong>The PM hat.</strong> Rodi + Eyal scope: Blank only, Templates excluded.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="7">
+          <div class="story-art" data-fallback="Rodi sketches the test plan while Nohar reviews Eyal's code">
+            <img src="images/story-7-plan-and-review.png" alt="Split scene: Rodi sketches the A/B test plan on a whiteboard while Nohar reviews Eyal's code" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">7</span><span><strong>Plan + review.</strong> Rodi drafts the A/B test. Nohar approves Eyal's code.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="8">
+          <div class="story-art" data-fallback="Rodi and Eyal launch the A/B test, dollar bills flying">
+            <img src="images/story-8-launch.png" alt="Rodi and Eyal celebrate launching the A/B test as cartoon dollar bills fly through the office" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">8</span><span><strong>Launch.</strong> Test live. Dollar bills in flight.</span></figcaption>
+        </figure>
+      </div>
+      <button class="story-nav next" data-story-next aria-label="Next panel">&#10095;</button>
+      <div class="story-dots" data-story-dots>
+        <button class="dot is-active" data-story-go="1" aria-label="Panel 1"></button>
+        <button class="dot" data-story-go="2" aria-label="Panel 2"></button>
+        <button class="dot" data-story-go="3" aria-label="Panel 3"></button>
+        <button class="dot" data-story-go="4" aria-label="Panel 4"></button>
+        <button class="dot" data-story-go="5" aria-label="Panel 5"></button>
+        <button class="dot" data-story-go="6" aria-label="Panel 6"></button>
+        <button class="dot" data-story-go="7" aria-label="Panel 7"></button>
+        <button class="dot" data-story-go="8" aria-label="Panel 8"></button>
+      </div>
+    </div>
+    <div class="slide-num">06</div>
+  </section>
+
+  <!-- 7. The Test (A/B Framework) -->
   <section class="slide" data-title="The Test">
     <div class="slide-eyebrow">The Test &middot; A/B Framework</div>
     <h1>How we'll know it worked.</h1>
@@ -737,7 +888,7 @@
       <div class="ab-card">
         <h3><span style="background:var(--grad);color:white;width:26px;height:26px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;margin-right:8px;">K</span>Primary KPIs</h3>
         <div class="row"><span class="lbl">Explore</span><span class="val">Clicks / scrolls / component discovery in the Add Panel</span></div>
-        <div class="row"><span class="lbl">Work</span><span class="val">First component placed on the canvas</span></div>
+        <div class="row"><span class="lbl">Work</span><span class="val">8 components / 1st library / 6th media / 1st page / completion (earliest)</span></div>
         <div class="row"><span class="lbl">Long-tail</span><span class="val">Retention &amp; Premium (read-out)</span></div>
       </div>
       <div class="ab-hypothesis">
@@ -750,42 +901,6 @@
       <div class="label">Status: In Test &middot; A/B running</div>
       <div class="meta">Manual QA passed &middot; monitoring active</div>
     </div>
-    <div class="slide-num">06</div>
-  </section>
-
-  <!-- 7. The Method -->
-  <section class="slide" data-title="The Method">
-    <div class="slide-eyebrow">The Method &middot; How a deprioritized idea shipped</div>
-    <h1>End-to-end Creator ownership.</h1>
-    <p class="lede">No PM bottleneck. No long roadmap wait. The data team picked the surface, wrote the code, ran the QA, and opened the test.</p>
-    <div class="method-layout">
-      <div class="flow-vert">
-        <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px;">The Creator Flow</div>
-        <div class="step"><div class="num">1</div><div class="name">Idea &middot; data-driven hypothesis</div></div>
-        <div class="step"><div class="num">2</div><div class="name">Concept &middot; UX framing + scoping</div></div>
-        <div class="step"><div class="num">3</div><div class="name">Technical implementation</div></div>
-        <div class="step"><div class="num">4</div><div class="name">Spec + test plan</div></div>
-        <div class="step"><div class="num">5</div><div class="name">Manual QA</div></div>
-        <div class="step"><div class="num">6</div><div class="name">A/B execution + monitoring</div></div>
-        <div style="font-size:0.78rem;color:var(--text-dim);margin-top:4px;">
-          <strong style="color:var(--text);">Governance:</strong> Unit Lead (concept) &middot; Dev Team Lead (code review).
-        </div>
-      </div>
-      <div class="friction-stack">
-        <div class="card">
-          <h3><span class="icon">!</span>The roadblock</h3>
-          <p>Deprioritized for Studio 2. Without an owner outside the PM queue, the idea would still be sitting in a backlog.</p>
-        </div>
-        <div class="card">
-          <h3><span class="icon">&gt;</span>The pivot</h3>
-          <p>The Creator model removed the bottleneck: data ownership + technical capability + light governance = shippable.</p>
-        </div>
-        <div class="card">
-          <h3><span class="icon">?</span>"Bad idea" objections</h3>
-          <p>Opinion is not an arbiter. The A/B test is. Disagreement becomes a hypothesis, not a veto.</p>
-        </div>
-      </div>
-    </div>
     <div class="slide-num">07</div>
   </section>
 
@@ -797,7 +912,7 @@
       <div class="next-card">
         <div class="num">01</div>
         <h3>Read out the test</h3>
-        <p>Decision on Exploration + Start Working lift. Ship to 100% or fold the learnings into the next iteration.</p>
+        <p>Decision on Exploration + Start Working lift. Ship to 100% or fold the learnings into the next iteration. <strong style="color:var(--text);">Decision in 14 days.</strong></p>
       </div>
       <div class="next-card">
         <div class="num">02</div>
@@ -811,7 +926,7 @@
       </div>
     </div>
     <div class="next-callout">
-      <strong>The unlock:</strong> a repeatable, PM-light pattern for shipping small, surgical, data-backed changes at the top of the funnel. The deck is the blueprint.
+      <strong>Our ask:</strong> greenlight 2 more Creator-led tests this quarter, and let us share the playbook with the rest of Studio.
     </div>
     <div class="slide-num">08</div>
   </section>
@@ -864,10 +979,38 @@
     nav.children[current].classList.add('active');
     const btn = nav.children[current];
     if (btn && btn.scrollIntoView) btn.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    if (typeof storyGo === 'function' && slides[current].querySelector('#storyCarousel')) {
+      storyGo(1);
+    }
   }
 
   slides[0].classList.add('active');
   nav.children[0].classList.add('active');
+
+  const storyCarousel = document.getElementById('storyCarousel');
+  let storyIdx = 1;
+  const storyTotal = storyCarousel ? parseInt(storyCarousel.dataset.total, 10) : 0;
+  const storySlideEls = storyCarousel ? storyCarousel.querySelectorAll('.story-slide') : [];
+  const storyDotEls = storyCarousel ? storyCarousel.querySelectorAll('[data-story-go]') : [];
+  const storyPrev = storyCarousel ? storyCarousel.querySelector('[data-story-prev]') : null;
+  const storyNext = storyCarousel ? storyCarousel.querySelector('[data-story-next]') : null;
+
+  function storyGo(n) {
+    if (!storyCarousel) return;
+    storyIdx = Math.max(1, Math.min(storyTotal, n));
+    storySlideEls.forEach(el => el.classList.toggle('is-active', parseInt(el.dataset.idx, 10) === storyIdx));
+    storyDotEls.forEach(el => el.classList.toggle('is-active', parseInt(el.dataset.storyGo, 10) === storyIdx));
+    if (storyPrev) storyPrev.disabled = storyIdx === 1;
+    if (storyNext) storyNext.disabled = storyIdx === storyTotal;
+    storyCarousel.dataset.active = storyIdx;
+  }
+  if (storyPrev) storyPrev.addEventListener('click', () => storyGo(storyIdx - 1));
+  if (storyNext) storyNext.addEventListener('click', () => storyGo(storyIdx + 1));
+  storyDotEls.forEach(d => d.addEventListener('click', () => storyGo(parseInt(d.dataset.storyGo, 10))));
+  function isOnStorySlide() {
+    return storyCarousel && slides[current] === storyCarousel.closest('.slide');
+  }
+  storyGo(1);
 
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -875,9 +1018,11 @@
       case 'ArrowRight':
       case 'PageDown':
       case ' ':
+        if (isOnStorySlide() && storyIdx < storyTotal) { e.preventDefault(); storyGo(storyIdx + 1); break; }
         e.preventDefault(); go(current + 1); break;
       case 'ArrowLeft':
       case 'PageUp':
+        if (isOnStorySlide() && storyIdx > 1) { e.preventDefault(); storyGo(storyIdx - 1); break; }
         e.preventDefault(); go(current - 1); break;
       case 'Home':
         e.preventDefault(); go(0); break;

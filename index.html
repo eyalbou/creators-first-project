@@ -681,7 +681,109 @@
     <div class="slide-num">01</div>
   </section>
 
-  <!-- 2. How it started (narrative carousel) -->
+  <!-- 2. The Problem -->
+  <section class="slide" data-title="The Problem">
+    <div class="slide-eyebrow">The Problem</div>
+    <h1>Most new users leave before <span class="grad-text">real engagement</span>.</h1>
+    <div class="problem-cols">
+      <div class="stat-block warn">
+        <div class="stat-eyebrow">Earlier in the funnel</div>
+        <div class="stat-big">25%</div>
+        <div class="stat-headline">don't even reach Start Exploring.</div>
+        <div class="stat-sub">They open the builder, take no basic action, and leave -- the first-session bounce.</div>
+      </div>
+      <div class="stat-block danger">
+        <div class="stat-eyebrow">Deeper in the funnel</div>
+        <div class="stat-big">70%</div>
+        <div class="stat-headline">don't reach Start Working.</div>
+        <div class="stat-sub">Never place 8 components, add a library, or reach a published page.</div>
+      </div>
+      <div class="def-block">
+        <div class="def-title">How we measure</div>
+        <div style="font-size:0.74rem;color:var(--text-dim);font-style:italic;margin-top:-6px;">Measured in the user's first 7 days &middot; earliest of any of:</div>
+        <div class="def-group">
+          <div class="def-name">Start Exploring</div>
+          <ul>
+            <li>2nd added component</li>
+            <li>1st added media</li>
+            <li>1st added page</li>
+            <li>1st added library</li>
+            <li>2nd site created</li>
+            <li>1st completion date</li>
+            <li>2nd session</li>
+          </ul>
+        </div>
+        <div class="def-group">
+          <div class="def-name">Start Working</div>
+          <ul>
+            <li>8th added component</li>
+            <li>1st added library</li>
+            <li>6th added media</li>
+            <li>1st added page</li>
+            <li>1st completion date</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bet-cta">
+      <div class="bet-icon">&rarr;</div>
+      <div class="bet-text">
+        <strong>The bet:</strong> remove the discovery step. Put the tools in front of the user before they doubt the choice.
+      </div>
+      <div class="bet-arrow">&rarr;</div>
+    </div>
+    <div style="font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;text-align:right;margin-top:8px;">
+      Source &middot; UJ first-session, 7d window &middot; Blank scoping query, 90d
+    </div>
+    <div class="slide-num">02</div>
+  </section>
+
+  <!-- 3. The Solution -->
+  <section class="slide compact" data-title="The Solution">
+    <div class="slide-eyebrow">The Solution</div>
+    <h1>Open the Add Panel by default.</h1>
+    <p class="lede">For first-session users on Blank sites, the Add Panel starts open. Components are visible the moment the canvas loads -- one less click, infinitely more affordance.</p>
+    <div class="screenshot-compare">
+      <figure>
+        <img src="images/panel-closed.png" alt="Blank site with Add Panel collapsed (control)" />
+        <figcaption><span class="badge control">Control</span>Panel collapsed. User must find and click it to begin.</figcaption>
+      </figure>
+      <figure class="treatment treatment-annotation">
+        <img src="images/panel-open.png" alt="Blank site with Add Panel open by default (treatment)" />
+        <figcaption><span class="badge treatment">Treatment</span>Panel open. Image, Title, Button, Section, Gallery, Video -- all instantly clickable.</figcaption>
+      </figure>
+    </div>
+    <div class="slide-num">03</div>
+  </section>
+
+  <!-- 4. The Precedent -->
+  <section class="slide compact" data-title="Precedent">
+    <div class="slide-eyebrow">Precedent</div>
+    <h1>A sibling surface <span class="grad-text">moved Premium by +7%.</span></h1>
+    <div class="precedent-layout">
+      <figure class="precedent-img-wrap" style="margin:0;">
+        <img src="images/empty-state-precedent.png" alt="Prior Empty State A/B test inside the Section" />
+        <figcaption><strong style="color:var(--text);">Before:</strong> empty Section. <strong style="color:var(--text);">After:</strong> 3 starting-point icons ("Designed Section / Grid Layout / Add an Element") -> +7% Premium.</figcaption>
+      </figure>
+      <div class="lift-callout">
+        <div>
+          <div class="lift-big">+7%</div>
+          <div class="lift-label">Premium lift</div>
+          <div class="lift-sub">Statistically significant. Shipped to production.</div>
+        </div>
+        <div class="lift-quote">
+          A surface-level affordance change in this same Blank-site surface produced a top-line business outcome.
+          <br/><em>This test extends that precedent to a sibling surface that has never been touched: the Add Panel.</em>
+        </div>
+        <div style="font-size:0.85rem;color:var(--text-dim);">
+          <strong style="color:var(--text);">Why now:</strong> top-of-funnel changes compound. A small lift across ~32% of new users moves a big number.
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">04</div>
+  </section>
+
+  <!-- 5. How it started (narrative carousel) -->
   <section class="slide compact story-slide-wrap" data-title="How it started">
     <div class="slide-eyebrow">How it started</div>
     <h1 class="story-h1">How a side conversation became a <span class="grad-text">live experiment</span>.</h1>
@@ -747,108 +849,6 @@
         <button class="dot" data-story-go="6" aria-label="Panel 6"></button>
         <button class="dot" data-story-go="7" aria-label="Panel 7"></button>
         <button class="dot" data-story-go="8" aria-label="Panel 8"></button>
-      </div>
-    </div>
-    <div class="slide-num">02</div>
-  </section>
-
-  <!-- 3. The Problem -->
-  <section class="slide" data-title="The Problem">
-    <div class="slide-eyebrow">The Problem</div>
-    <h1>Most new users leave before <span class="grad-text">real engagement</span>.</h1>
-    <div class="problem-cols">
-      <div class="stat-block warn">
-        <div class="stat-eyebrow">Earlier in the funnel</div>
-        <div class="stat-big">25%</div>
-        <div class="stat-headline">don't even reach Start Exploring.</div>
-        <div class="stat-sub">They open the builder, take no basic action, and leave -- the first-session bounce.</div>
-      </div>
-      <div class="stat-block danger">
-        <div class="stat-eyebrow">Deeper in the funnel</div>
-        <div class="stat-big">70%</div>
-        <div class="stat-headline">don't reach Start Working.</div>
-        <div class="stat-sub">Never place 8 components, add a library, or reach a published page.</div>
-      </div>
-      <div class="def-block">
-        <div class="def-title">How we measure</div>
-        <div style="font-size:0.74rem;color:var(--text-dim);font-style:italic;margin-top:-6px;">Measured in the user's first 7 days &middot; earliest of any of:</div>
-        <div class="def-group">
-          <div class="def-name">Start Exploring</div>
-          <ul>
-            <li>2nd added component</li>
-            <li>1st added media</li>
-            <li>1st added page</li>
-            <li>1st added library</li>
-            <li>2nd site created</li>
-            <li>1st completion date</li>
-            <li>2nd session</li>
-          </ul>
-        </div>
-        <div class="def-group">
-          <div class="def-name">Start Working</div>
-          <ul>
-            <li>8th added component</li>
-            <li>1st added library</li>
-            <li>6th added media</li>
-            <li>1st added page</li>
-            <li>1st completion date</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="bet-cta">
-      <div class="bet-icon">&rarr;</div>
-      <div class="bet-text">
-        <strong>The bet:</strong> remove the discovery step. Put the tools in front of the user before they doubt the choice.
-      </div>
-      <div class="bet-arrow">&rarr;</div>
-    </div>
-    <div style="font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;text-align:right;margin-top:8px;">
-      Source &middot; UJ first-session, 7d window &middot; Blank scoping query, 90d
-    </div>
-    <div class="slide-num">03</div>
-  </section>
-
-  <!-- 4. The Solution -->
-  <section class="slide compact" data-title="The Solution">
-    <div class="slide-eyebrow">The Solution</div>
-    <h1>Open the Add Panel by default.</h1>
-    <p class="lede">For first-session users on Blank sites, the Add Panel starts open. Components are visible the moment the canvas loads -- one less click, infinitely more affordance.</p>
-    <div class="screenshot-compare">
-      <figure>
-        <img src="images/panel-closed.png" alt="Blank site with Add Panel collapsed (control)" />
-        <figcaption><span class="badge control">Control</span>Panel collapsed. User must find and click it to begin.</figcaption>
-      </figure>
-      <figure class="treatment treatment-annotation">
-        <img src="images/panel-open.png" alt="Blank site with Add Panel open by default (treatment)" />
-        <figcaption><span class="badge treatment">Treatment</span>Panel open. Image, Title, Button, Section, Gallery, Video -- all instantly clickable.</figcaption>
-      </figure>
-    </div>
-    <div class="slide-num">04</div>
-  </section>
-
-  <!-- 5. The Precedent -->
-  <section class="slide compact" data-title="Precedent">
-    <div class="slide-eyebrow">Precedent</div>
-    <h1>A sibling surface <span class="grad-text">moved Premium by +7%.</span></h1>
-    <div class="precedent-layout">
-      <figure class="precedent-img-wrap" style="margin:0;">
-        <img src="images/empty-state-precedent.png" alt="Prior Empty State A/B test inside the Section" />
-        <figcaption><strong style="color:var(--text);">Before:</strong> empty Section. <strong style="color:var(--text);">After:</strong> 3 starting-point icons ("Designed Section / Grid Layout / Add an Element") -> +7% Premium.</figcaption>
-      </figure>
-      <div class="lift-callout">
-        <div>
-          <div class="lift-big">+7%</div>
-          <div class="lift-label">Premium lift</div>
-          <div class="lift-sub">Statistically significant. Shipped to production.</div>
-        </div>
-        <div class="lift-quote">
-          A surface-level affordance change in this same Blank-site surface produced a top-line business outcome.
-          <br/><em>This test extends that precedent to a sibling surface that has never been touched: the Add Panel.</em>
-        </div>
-        <div style="font-size:0.85rem;color:var(--text-dim);">
-          <strong style="color:var(--text);">Why now:</strong> top-of-funnel changes compound. A small lift across ~32% of new users moves a big number.
-        </div>
       </div>
     </div>
     <div class="slide-num">05</div>
@@ -922,7 +922,7 @@
       <div class="next-card">
         <div class="num">02</div>
         <h3>The test is the tool, not the trophy</h3>
-        <p>Win or lose, the A/B test still does its real job: it tells us if the idea was good. Either way the next decision ships with conviction.</p>
+        <p>An A/B test is the method for proving whether an idea actually works. Win or lose, we leave with a real answer instead of an opinion.</p>
       </div>
       <div class="next-card">
         <div class="num">03</div>

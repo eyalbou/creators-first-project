@@ -398,32 +398,53 @@
     display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px;
     flex: 1; min-height: 0;
   }
-  .template-grid {
-    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
-    gap: 10px; min-height: 0;
+  .template-carousel {
+    position: relative;
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    grid-template-rows: 1fr auto;
+    gap: 8px 8px;
+    align-items: center;
   }
-  .template-grid figure {
-    margin: 0; background: var(--surface); border: 1px solid var(--danger);
-    border-radius: 10px; padding: 6px;
-    display: flex; flex-direction: column; min-height: 0;
-    position: relative; overflow: hidden;
+  .template-stage {
+    grid-column: 2; grid-row: 1;
+    position: relative;
+    width: 100%; height: 100%;
+    min-height: 0;
   }
-  .template-grid figure::before {
+  .template-slide {
+    position: absolute; inset: 0;
+    margin: 0;
+    background: var(--surface); border: 1px solid var(--danger);
+    border-radius: 12px; padding: 10px;
+    display: flex; flex-direction: column; gap: 6px;
+    overflow: hidden;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.28s ease;
+    pointer-events: none;
+  }
+  .template-slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .template-slide::before {
     content: "Panel covers hero";
-    position: absolute; top: 6px; right: 6px;
+    position: absolute; top: 12px; right: 12px;
     background: rgba(255,110,126,0.92); color: white;
-    font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 4px;
     letter-spacing: 0.04em; z-index: 2;
   }
-  .template-grid img {
+  .template-slide img {
     width: 100%; flex: 1; min-height: 0;
-    object-fit: cover; object-position: left top;
-    border-radius: 6px; background: #0a0e18;
+    object-fit: contain; object-position: center top;
+    border-radius: 8px; background: #0a0e18;
   }
-  .template-grid figcaption {
-    font-size: 0.7rem; color: var(--text-dim);
-    padding: 6px 4px 2px; font-weight: 600;
+  .template-slide figcaption {
+    font-size: 0.85rem; color: var(--text);
+    padding: 4px 4px 0; font-weight: 600; text-align: center;
   }
+  .template-carousel .story-nav.prev { grid-column: 1; grid-row: 1; }
+  .template-carousel .story-nav.next { grid-column: 3; grid-row: 1; }
+  .template-carousel .story-nav { width: 38px; height: 38px; font-size: 0.95rem; }
+  .template-carousel .story-dots { grid-column: 1 / -1; grid-row: 2; }
   .rationale-block {
     display: flex; flex-direction: column; justify-content: center; gap: 14px;
   }
@@ -859,11 +880,33 @@
     <div class="slide-eyebrow">Strategic Guardrails &middot; Why Blank only</div>
     <h1>Same change, <span class="grad-text">opposite effect.</span></h1>
     <div class="guardrails-layout">
-      <div class="template-grid">
-        <figure><img src="images/template-overlap-1.png" alt="Portfolio template hero hidden by Add Panel" /><figcaption>Portfolio &middot; hero + CTA clipped</figcaption></figure>
-        <figure><img src="images/template-overlap-2.png" alt="SaaS template headline hidden by Add Panel" /><figcaption>SaaS &middot; headline clipped</figcaption></figure>
-        <figure><img src="images/template-overlap-3.png" alt="Brand agency template hero hidden by Add Panel" /><figcaption>Brand &middot; hero copy hidden</figcaption></figure>
-        <figure><img src="images/template-overlap-4.png" alt="Construction template nav covered by Add Panel" /><figcaption>Construction &middot; nav covered</figcaption></figure>
+      <div class="template-carousel" id="templateCarousel" data-active="1" data-total="4">
+        <button class="story-nav prev" data-template-prev aria-label="Previous template">&#10094;</button>
+        <div class="template-stage">
+          <figure class="template-slide is-active" data-idx="1">
+            <img src="images/template-overlap-1.png" alt="Portfolio template hero hidden by Add Panel" />
+            <figcaption>Portfolio &middot; hero + CTA clipped</figcaption>
+          </figure>
+          <figure class="template-slide" data-idx="2">
+            <img src="images/template-overlap-2.png" alt="SaaS template headline hidden by Add Panel" />
+            <figcaption>SaaS &middot; headline clipped</figcaption>
+          </figure>
+          <figure class="template-slide" data-idx="3">
+            <img src="images/template-overlap-3.png" alt="Brand agency template hero hidden by Add Panel" />
+            <figcaption>Brand &middot; hero copy hidden</figcaption>
+          </figure>
+          <figure class="template-slide" data-idx="4">
+            <img src="images/template-overlap-4.png" alt="Construction template nav covered by Add Panel" />
+            <figcaption>Construction &middot; nav covered</figcaption>
+          </figure>
+        </div>
+        <button class="story-nav next" data-template-next aria-label="Next template">&#10095;</button>
+        <div class="story-dots" data-template-dots>
+          <button class="dot is-active" data-template-go="1" aria-label="Template 1"></button>
+          <button class="dot" data-template-go="2" aria-label="Template 2"></button>
+          <button class="dot" data-template-go="3" aria-label="Template 3"></button>
+          <button class="dot" data-template-go="4" aria-label="Template 4"></button>
+        </div>
       </div>
       <div class="rationale-block">
         <div class="quote">
@@ -987,6 +1030,9 @@
     if (typeof storyGo === 'function' && slides[current].querySelector('#storyCarousel')) {
       storyGo(1);
     }
+    if (typeof templateGo === 'function' && slides[current].querySelector('#templateCarousel')) {
+      templateGo(1);
+    }
   }
 
   slides[0].classList.add('active');
@@ -1017,6 +1063,31 @@
   }
   storyGo(1);
 
+  const templateCarousel = document.getElementById('templateCarousel');
+  let templateIdx = 1;
+  const templateTotal = templateCarousel ? parseInt(templateCarousel.dataset.total, 10) : 0;
+  const templateSlideEls = templateCarousel ? templateCarousel.querySelectorAll('.template-slide') : [];
+  const templateDotEls = templateCarousel ? templateCarousel.querySelectorAll('[data-template-go]') : [];
+  const templatePrev = templateCarousel ? templateCarousel.querySelector('[data-template-prev]') : null;
+  const templateNext = templateCarousel ? templateCarousel.querySelector('[data-template-next]') : null;
+
+  function templateGo(n) {
+    if (!templateCarousel) return;
+    templateIdx = Math.max(1, Math.min(templateTotal, n));
+    templateSlideEls.forEach(el => el.classList.toggle('is-active', parseInt(el.dataset.idx, 10) === templateIdx));
+    templateDotEls.forEach(el => el.classList.toggle('is-active', parseInt(el.dataset.templateGo, 10) === templateIdx));
+    if (templatePrev) templatePrev.disabled = templateIdx === 1;
+    if (templateNext) templateNext.disabled = templateIdx === templateTotal;
+    templateCarousel.dataset.active = templateIdx;
+  }
+  if (templatePrev) templatePrev.addEventListener('click', () => templateGo(templateIdx - 1));
+  if (templateNext) templateNext.addEventListener('click', () => templateGo(templateIdx + 1));
+  templateDotEls.forEach(d => d.addEventListener('click', () => templateGo(parseInt(d.dataset.templateGo, 10))));
+  function isOnTemplateSlide() {
+    return templateCarousel && slides[current] === templateCarousel.closest('.slide');
+  }
+  templateGo(1);
+
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     switch (e.key) {
@@ -1024,10 +1095,12 @@
       case 'PageDown':
       case ' ':
         if (isOnStorySlide() && storyIdx < storyTotal) { e.preventDefault(); storyGo(storyIdx + 1); break; }
+        if (isOnTemplateSlide() && templateIdx < templateTotal) { e.preventDefault(); templateGo(templateIdx + 1); break; }
         e.preventDefault(); go(current + 1); break;
       case 'ArrowLeft':
       case 'PageUp':
         if (isOnStorySlide() && storyIdx > 1) { e.preventDefault(); storyGo(storyIdx - 1); break; }
+        if (isOnTemplateSlide() && templateIdx > 1) { e.preventDefault(); templateGo(templateIdx - 1); break; }
         e.preventDefault(); go(current - 1); break;
       case 'Home':
         e.preventDefault(); go(0); break;

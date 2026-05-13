@@ -456,31 +456,54 @@
     background: var(--grad); color: white;
   }
   /* ---------- A/B framework slide ---------- */
-  .ab-layout {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    margin-top: 4px;
+  .funnel-row {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr 32px 1fr;
+    align-items: stretch; gap: 6px;
+    margin-top: 8px;
   }
-  .ab-card {
+  .funnel-stage {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 16px 18px;
+    border-radius: 14px; padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative;
   }
-  .ab-card h3 { margin-bottom: 8px; }
-  .ab-card .row {
-    display: flex; align-items: baseline; gap: 10px;
-    padding: 6px 0;
+  .funnel-stage .stage-tag {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
   }
-  .ab-card .row .lbl {
-    font-size: 0.78rem; color: var(--muted); text-transform: uppercase;
-    letter-spacing: 0.06em; min-width: 90px;
+  .funnel-stage h3 {
+    font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em;
+    margin: 0; color: var(--text);
   }
-  .ab-card .row .val { font-size: 0.92rem; color: var(--text); }
-  .ab-hypothesis {
-    grid-column: 1 / -1; background: var(--surface);
-    border: 1px solid var(--accent-1); border-radius: 12px;
-    padding: 16px 20px;
+  .funnel-stage p {
+    font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; margin: 0;
   }
-  .ab-hypothesis h3 { color: var(--accent-1); margin-bottom: 6px; }
-  .ab-hypothesis p { color: var(--text); font-size: 0.95rem; margin: 0; }
+  .funnel-stage.stage-outcome {
+    background: linear-gradient(160deg, rgba(127,127,255,0.10), rgba(255,127,205,0.08));
+    border-color: var(--accent-1);
+  }
+  .funnel-stage.stage-outcome .stage-tag,
+  .funnel-stage.stage-outcome h3 {
+    background: var(--grad); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .funnel-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; color: var(--muted); font-weight: 700;
+  }
+  .funnel-insight {
+    margin-top: 12px;
+    background: var(--surface); border: 1px solid var(--accent-1);
+    border-radius: 14px; padding: 16px 20px;
+  }
+  .funnel-insight .insight-eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent-1); margin-bottom: 6px;
+  }
+  .funnel-insight p {
+    font-size: 0.95rem; color: var(--text); line-height: 1.55; margin: 0;
+  }
   .status-row {
     display: flex; align-items: center; gap: 12px;
     padding: 12px 16px; background: var(--surface);
@@ -925,29 +948,37 @@
   <section class="slide" data-title="The Test">
     <div class="slide-eyebrow">The Test &middot; A/B Framework</div>
     <h1>How we'll know it worked.</h1>
-    <p class="lede">Two primary KPIs, one clean population, one binary decision: ship or learn.</p>
-    <div class="ab-layout">
-      <div class="ab-card">
-        <h3><span style="background:var(--grad);color:white;width:26px;height:26px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;margin-right:8px;">W</span>Population</h3>
-        <div class="row"><span class="lbl">Who</span><span class="val">First-session users only</span></div>
-        <div class="row"><span class="lbl">Filter</span><span class="val">Blank sites (Templates excluded)</span></div>
-        <div class="row"><span class="lbl">Scope</span><span class="val">~32% of all new users</span></div>
+    <p class="lede">One funnel, three KPIs. A lift at any stage flows downstream to Premium.</p>
+
+    <div class="funnel-row">
+      <div class="funnel-stage">
+        <div class="stage-tag">Stage 01</div>
+        <h3>Start Exploring</h3>
+        <p>Users actually engage with the Add Panel -- scroll, hover, discover what's inside.</p>
       </div>
-      <div class="ab-card">
-        <h3><span style="background:var(--grad);color:white;width:26px;height:26px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;margin-right:8px;">K</span>Primary KPIs</h3>
-        <div class="row"><span class="lbl">Explore</span><span class="val">Clicks / scrolls / component discovery in the Add Panel</span></div>
-        <div class="row"><span class="lbl">Work</span><span class="val">8 components / 1st library / 6th media / 1st page / completion (earliest)</span></div>
-        <div class="row"><span class="lbl">Long-tail</span><span class="val">Retention &amp; Premium (read-out)</span></div>
+      <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
+      <div class="funnel-stage">
+        <div class="stage-tag">Stage 02</div>
+        <h3>Start Working</h3>
+        <p>Meaningful creation: 8 components, 1st library, 6th media, 1st page, or completion -- whichever comes first.</p>
       </div>
-      <div class="ab-hypothesis">
-        <h3>Hypothesis</h3>
-        <p>Removing the discovery click drives a measurable lift in Exploration and Start Working. A faster first win compounds into higher retention and, ultimately, Premium.</p>
+      <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
+      <div class="funnel-stage stage-outcome">
+        <div class="stage-tag">Outcome</div>
+        <h3>Premium</h3>
+        <p>The long-tail conversion -- the metric the business ultimately cares about.</p>
       </div>
     </div>
+
+    <div class="funnel-insight">
+      <div class="insight-eyebrow">Why these three move together</div>
+      <p>These KPIs aren't independent. They're the same journey, measured at three depths. Prior A/B tests across the surface have consistently shown that pushing more users into meaningful creation reliably lifts Premium downstream. A win at any stage is a real signal -- they all sit on the same chain.</p>
+    </div>
+
     <div class="status-row">
       <span class="badge live">Live</span>
-      <div class="label">Status: In Test &middot; A/B running</div>
-      <div class="meta">Manual QA passed &middot; monitoring active</div>
+      <div class="label">Population: first-session users on Blank sites &middot; 1/3 of new users</div>
+      <div class="meta">A/B running &middot; monitoring active</div>
     </div>
     <div class="slide-num">07</div>
   </section>

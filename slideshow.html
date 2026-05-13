@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>High Impact, Low Friction -- The Creators First Project</title>
+<title>High Impact, Low Friction - The Creators First Project</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -557,6 +557,32 @@
   }
   .next-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
   .next-card p { font-size: 0.88rem; margin: 0; }
+  .next-card {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+  }
+  .next-card.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .reveal-hint {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 4px; padding: 8px 14px;
+    font-size: 0.82rem; color: var(--text-dim);
+    transition: opacity 0.3s ease;
+  }
+  .reveal-hint.is-done { opacity: 0.4; }
+  .reveal-hint.is-done .reveal-text { display: none; }
+  .reveal-dots { display: inline-flex; gap: 6px; }
+  .reveal-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(160,168,192,0.3);
+    transition: background 0.3s ease;
+  }
+  .reveal-dot.is-on { background: var(--accent-1); }
   .next-callout {
     margin-top: auto; padding: 14px 18px;
     background: var(--surface); border-left: 3px solid var(--accent-1);
@@ -734,7 +760,7 @@
         <div class="stat-eyebrow">Earlier in the funnel</div>
         <div class="stat-big">25%</div>
         <div class="stat-headline">don't even reach Start Exploring.</div>
-        <div class="stat-sub">They open the builder, take no basic action, and leave -- the first-session bounce.</div>
+        <div class="stat-sub">They open the builder, take no basic action, and leave, the first-session bounce.</div>
       </div>
       <div class="stat-block danger">
         <div class="stat-eyebrow">Deeper in the funnel</div>
@@ -786,7 +812,7 @@
   <section class="slide compact" data-title="The Solution">
     <div class="slide-eyebrow">The Solution</div>
     <h1>Open the Add Panel by default.</h1>
-    <p class="lede">For first-session users on Blank sites, the Add Panel starts open. Components are visible the moment the canvas loads -- one less click, infinitely more affordance.</p>
+    <p class="lede">For first-session users on Blank sites, the Add Panel starts open. Components are visible the moment the canvas loads. One less click, infinitely more affordance.</p>
     <div class="screenshot-compare">
       <figure>
         <img src="images/panel-closed.png" alt="Blank site with Add Panel collapsed (control)" />
@@ -794,7 +820,7 @@
       </figure>
       <figure class="treatment treatment-annotation">
         <img src="images/panel-open.png" alt="Blank site with Add Panel open by default (treatment)" />
-        <figcaption><span class="badge treatment">Treatment</span>Panel open. Image, Title, Button, Section, Gallery, Video -- all instantly clickable.</figcaption>
+        <figcaption><span class="badge treatment">Treatment</span>Panel open. Image, Title, Button, Section, Gallery, Video, all instantly clickable.</figcaption>
       </figure>
     </div>
     <div class="slide-num">03</div>
@@ -933,7 +959,7 @@
       </div>
       <div class="rationale-block">
         <div class="quote">
-          On <strong>Templates</strong>, the Add Panel <strong>occludes the very value the user just chose</strong> -- their first impression is a panel, not a polished site.
+          On <strong>Templates</strong>, the Add Panel <strong>occludes the very value the user just chose</strong>. Their first impression is a panel, not a polished site.
         </div>
         <div class="quote dim">
           On <strong>Blank sites</strong>, there is nothing to occlude. The panel adds pure affordance with zero cost.
@@ -954,25 +980,25 @@
       <div class="funnel-stage">
         <div class="stage-tag">Stage 01</div>
         <h3>Start Exploring</h3>
-        <p>Users actually engage with the Add Panel -- scroll, hover, discover what's inside.</p>
+        <p>Users actually engage with the Add Panel: scroll, hover, discover what's inside.</p>
       </div>
       <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
       <div class="funnel-stage">
         <div class="stage-tag">Stage 02</div>
         <h3>Start Working</h3>
-        <p>Meaningful creation: 8 components, 1st library, 6th media, 1st page, or completion -- whichever comes first.</p>
+        <p>Meaningful creation: 8 components, 1st library, 6th media, 1st page, or completion, whichever comes first.</p>
       </div>
       <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
       <div class="funnel-stage stage-outcome">
         <div class="stage-tag">Outcome</div>
         <h3>Premium</h3>
-        <p>The long-tail conversion -- the metric the business ultimately cares about.</p>
+        <p>The long-tail conversion. The metric the business ultimately cares about.</p>
       </div>
     </div>
 
     <div class="funnel-insight">
       <div class="insight-eyebrow">Why these three move together</div>
-      <p>These KPIs aren't independent. They're the same journey, measured at three depths. Prior A/B tests across the surface have consistently shown that pushing more users into meaningful creation reliably lifts Premium downstream. A win at any stage is a real signal -- they all sit on the same chain.</p>
+      <p>These KPIs aren't independent. They're the same journey, measured at three depths. Prior A/B tests across the surface have consistently shown that pushing more users into meaningful creation reliably lifts Premium downstream. A win at any stage is a real signal. They all sit on the same chain.</p>
     </div>
 
     <div class="status-row">
@@ -987,22 +1013,30 @@
   <section class="slide" data-title="What's Next">
     <div class="slide-eyebrow">What's Next</div>
     <h1>The biggest loss is the <span class="grad-text">idea you never test.</span></h1>
-    <div class="next-grid">
-      <div class="next-card">
+    <div class="next-grid" id="nextGrid" data-revealed="1" data-total="3">
+      <div class="next-card is-revealed" data-step="1">
         <div class="num">01</div>
-        <h3>From dashboards to decisions</h3>
-        <p>We are not just here to read out the numbers. The BA job is to land quick wins, influence the product itself, and move metrics -- not only report on them.</p>
+        <h3>Moving the needle</h3>
+        <p>We are not just here to read out the numbers. The BA job is to land quick wins, influence the product itself, and move metrics, not only report on them.</p>
       </div>
-      <div class="next-card">
+      <div class="next-card" data-step="2">
         <div class="num">02</div>
         <h3>The test is the tool, not the trophy</h3>
         <p>An A/B test is the method for proving whether an idea actually works. Win or lose, we leave with a real answer instead of an opinion.</p>
       </div>
-      <div class="next-card">
+      <div class="next-card" data-step="3">
         <div class="num">03</div>
         <h3>The idea you never tested</h3>
-        <p>Your intuition as a BA has product-grade potential. The biggest loss is not a flat result -- it is keeping a good idea in your head and never letting it see the light.</p>
+        <p>Your intuition as a BA has product-grade potential. The biggest loss is not a flat result, it is keeping a good idea in your head and never letting it see the light.</p>
       </div>
+    </div>
+    <div class="reveal-hint" id="revealHint">
+      <span class="reveal-dots">
+        <span class="reveal-dot is-on"></span>
+        <span class="reveal-dot"></span>
+        <span class="reveal-dot"></span>
+      </span>
+      <span class="reveal-text">Click or press &rarr; to reveal the next idea</span>
     </div>
     <div class="next-callout">
       <strong>The takeaway:</strong> trust the intuition. Run the test. Let the data settle it.
@@ -1064,6 +1098,9 @@
     if (typeof templateGo === 'function' && slides[current].querySelector('#templateCarousel')) {
       templateGo(1);
     }
+    if (typeof nextReveal === 'function' && slides[current].querySelector('#nextGrid')) {
+      nextReveal(1);
+    }
   }
 
   slides[0].classList.add('active');
@@ -1119,6 +1156,36 @@
   }
   templateGo(1);
 
+  const nextGrid = document.getElementById('nextGrid');
+  const nextHint = document.getElementById('revealHint');
+  let nextRevealed = 1;
+  const nextTotal = nextGrid ? parseInt(nextGrid.dataset.total, 10) : 0;
+  const nextCardEls = nextGrid ? nextGrid.querySelectorAll('.next-card') : [];
+  const nextDotEls = nextHint ? nextHint.querySelectorAll('.reveal-dot') : [];
+
+  function nextReveal(n) {
+    if (!nextGrid) return;
+    nextRevealed = Math.max(1, Math.min(nextTotal, n));
+    nextCardEls.forEach(el => {
+      const step = parseInt(el.dataset.step, 10);
+      el.classList.toggle('is-revealed', step <= nextRevealed);
+    });
+    nextDotEls.forEach((el, i) => el.classList.toggle('is-on', i < nextRevealed));
+    nextGrid.dataset.revealed = nextRevealed;
+    if (nextHint) nextHint.classList.toggle('is-done', nextRevealed >= nextTotal);
+  }
+  function isOnNextSlide() {
+    return nextGrid && slides[current] === nextGrid.closest('.slide');
+  }
+  if (nextGrid) {
+    nextGrid.closest('.slide').addEventListener('click', (e) => {
+      if (!isOnNextSlide()) return;
+      if (e.target.closest('button, a, input, textarea, .topbar, .nav-links')) return;
+      if (nextRevealed < nextTotal) nextReveal(nextRevealed + 1);
+    });
+  }
+  nextReveal(1);
+
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     switch (e.key) {
@@ -1127,11 +1194,13 @@
       case ' ':
         if (isOnStorySlide() && storyIdx < storyTotal) { e.preventDefault(); storyGo(storyIdx + 1); break; }
         if (isOnTemplateSlide() && templateIdx < templateTotal) { e.preventDefault(); templateGo(templateIdx + 1); break; }
+        if (isOnNextSlide() && nextRevealed < nextTotal) { e.preventDefault(); nextReveal(nextRevealed + 1); break; }
         e.preventDefault(); go(current + 1); break;
       case 'ArrowLeft':
       case 'PageUp':
         if (isOnStorySlide() && storyIdx > 1) { e.preventDefault(); storyGo(storyIdx - 1); break; }
         if (isOnTemplateSlide() && templateIdx > 1) { e.preventDefault(); templateGo(templateIdx - 1); break; }
+        if (isOnNextSlide() && nextRevealed > 1) { e.preventDefault(); nextReveal(nextRevealed - 1); break; }
         e.preventDefault(); go(current - 1); break;
       case 'Home':
         e.preventDefault(); go(0); break;

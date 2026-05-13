@@ -400,16 +400,24 @@
     margin-top: 10px; font-size: 0.8rem; color: var(--text-dim);
   }
   .lift-callout {
-    display: flex; flex-direction: column; justify-content: center; gap: 18px;
+    display: flex; flex-direction: column; justify-content: center; gap: 16px;
+  }
+  .lift-stack {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .lift-metric {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 2px;
   }
   .lift-big {
-    font-size: 5rem; line-height: 1; font-weight: 800;
+    font-size: 2.8rem; line-height: 1; font-weight: 800;
     background: linear-gradient(135deg, var(--good), var(--accent-1));
     -webkit-background-clip: text; background-clip: text; color: transparent;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
   }
-  .lift-label { font-size: 1.15rem; font-weight: 600; margin-top: 2px; }
-  .lift-sub { font-size: 0.88rem; color: var(--text-dim); margin-top: 4px; }
+  .lift-label { font-size: 0.95rem; font-weight: 600; margin-top: 4px; color: var(--text); }
+  .lift-sub { font-size: 0.88rem; color: var(--text-dim); margin: 0; font-weight: 600; }
   .lift-quote {
     border-left: 3px solid var(--accent-2); padding: 10px 14px;
     background: var(--surface); border-radius: 0 8px 8px 0;
@@ -870,24 +878,30 @@
   <!-- 4. The Precedent -->
   <section class="slide compact" data-title="Precedent">
     <div class="slide-eyebrow">Precedent</div>
-    <h1>A sibling surface <span class="grad-text">moved Premium by +7%.</span></h1>
+    <h1>A sibling surface moved <span class="grad-text">Premium +6.2%</span> and <span class="grad-text">Start Working +8%</span>.</h1>
     <div class="precedent-layout">
       <figure class="precedent-img-wrap" style="margin:0;">
         <img src="images/empty-state-precedent.png" alt="Prior Empty State A/B test inside the Section" />
-        <figcaption><strong style="color:var(--text);">Before:</strong> empty Section. <strong style="color:var(--text);">After:</strong> 3 starting-point icons ("Designed Section / Grid Layout / Add an Element") -> +7% Premium.</figcaption>
+        <figcaption><strong style="color:var(--text);">Before:</strong> empty Section. <strong style="color:var(--text);">After:</strong> 3 starting-point icons ("Designed Section / Grid Layout / Add an Element"), lifting both Premium and Start Working.</figcaption>
       </figure>
       <div class="lift-callout">
-        <div>
-          <div class="lift-big">+7%</div>
-          <div class="lift-label">Premium lift</div>
-          <div class="lift-sub">Statistically significant. Shipped to production.</div>
+        <div class="lift-stack">
+          <div class="lift-metric">
+            <div class="lift-big">+6.2%</div>
+            <div class="lift-label">Premium lift</div>
+          </div>
+          <div class="lift-metric">
+            <div class="lift-big">+8%</div>
+            <div class="lift-label">Start Working lift</div>
+          </div>
         </div>
+        <div class="lift-sub">Both statistically significant. Shipped to production.</div>
         <div class="lift-quote">
-          A surface-level affordance change in this same Blank-site surface produced a top-line business outcome.
+          A surface-level affordance change in this same Blank-site surface produced top-line business outcomes.
           <br/><em>This test extends that precedent to a sibling surface that has never been touched: the Add Panel.</em>
         </div>
         <div style="font-size:0.85rem;color:var(--text-dim);">
-          <strong style="color:var(--text);">Why now:</strong> top-of-funnel changes compound. A small lift across ~32% of new users moves a big number.
+          <strong style="color:var(--text);">Why now:</strong> top-of-funnel changes compound. A small lift across 1/3 of new users moves a big number.
         </div>
       </div>
     </div>

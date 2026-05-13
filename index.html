@@ -424,74 +424,6 @@
     font-size: 0.95rem; color: var(--text);
   }
   .lift-quote em { color: var(--text-dim); font-style: italic; }
-  /* ---------- template grid (guardrails) ---------- */
-  .guardrails-layout {
-    display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px;
-    flex: 1; min-height: 0;
-  }
-  .template-carousel {
-    position: relative;
-    width: 100%; height: 100%;
-    display: grid;
-    grid-template-columns: 44px 1fr 44px;
-    grid-template-rows: 1fr auto;
-    gap: 8px 8px;
-    align-items: center;
-  }
-  .template-stage {
-    grid-column: 2; grid-row: 1;
-    position: relative;
-    width: 100%; height: 100%;
-    min-height: 0;
-  }
-  .template-page {
-    position: absolute; inset: 0;
-    display: grid; grid-template-rows: 1fr 1fr; gap: 10px;
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.28s ease;
-    pointer-events: none;
-  }
-  .template-page.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
-  .template-slide {
-    position: relative;
-    margin: 0;
-    background: var(--surface); border: 1px solid var(--danger);
-    border-radius: 12px; padding: 10px;
-    display: flex; flex-direction: column; gap: 6px;
-    overflow: hidden;
-    min-height: 0;
-  }
-  .template-slide::before {
-    content: "Panel covers hero";
-    position: absolute; top: 12px; right: 12px;
-    background: rgba(255,110,126,0.92); color: white;
-    font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 4px;
-    letter-spacing: 0.04em; z-index: 2;
-  }
-  .template-slide img {
-    width: 100%; flex: 1; min-height: 0;
-    object-fit: contain; object-position: center;
-    border-radius: 8px; background: #0a0e18;
-  }
-  .template-slide figcaption {
-    font-size: 1rem; color: var(--text);
-    padding: 6px 4px 0; font-weight: 700; text-align: center;
-    letter-spacing: -0.005em;
-  }
-  .template-carousel .story-nav.prev { grid-column: 1; grid-row: 1; }
-  .template-carousel .story-nav.next { grid-column: 3; grid-row: 1; }
-  .template-carousel .story-nav { width: 38px; height: 38px; font-size: 0.95rem; }
-  .template-carousel .story-dots { grid-column: 1 / -1; grid-row: 2; }
-  .rationale-block {
-    display: flex; flex-direction: column; justify-content: center; gap: 14px;
-  }
-  .rationale-block .quote { font-size: 1rem; line-height: 1.5; color: var(--text); }
-  .rationale-block .quote.dim { color: var(--text-dim); font-size: 0.92rem; }
-  .closing-line {
-    font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em;
-    padding: 14px 18px; border-radius: 10px;
-    background: var(--grad); color: white;
-  }
   /* ---------- A/B framework slide ---------- */
   .funnel-row {
     display: grid;
@@ -912,7 +844,7 @@
   <section class="slide compact story-slide-wrap" data-title="How it started">
     <div class="slide-eyebrow">How it started</div>
     <h1 class="story-h1">How a side conversation became a <span class="grad-text">live experiment</span>.</h1>
-    <div class="story-carousel" id="storyCarousel" data-active="1" data-total="8">
+    <div class="story-carousel" id="storyCarousel" data-active="1" data-total="9">
       <button class="story-nav prev" data-story-prev aria-label="Previous panel">&#10094;</button>
       <div class="story-stage">
         <figure class="story-slide is-active" data-idx="1">
@@ -946,22 +878,28 @@
           <figcaption><span class="story-num">5</span><span><strong>The PM hat.</strong> Rodi + Eyal scope: Blank only, Templates excluded.</span></figcaption>
         </figure>
         <figure class="story-slide" data-idx="6">
+          <div class="story-art" data-fallback="A Portfolio template hero clipped by the Add Panel">
+            <img src="images/template-overlap-1.png" alt="Portfolio template with the Add Panel covering the hero and CTA" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
+          </div>
+          <figcaption><span class="story-num">6</span><span><strong>Why Blank only.</strong> On Templates, the Add Panel covers the hero. Blank is the only safe place to open it.</span></figcaption>
+        </figure>
+        <figure class="story-slide" data-idx="7">
           <div class="story-art" data-fallback="Eyal dives into the Studio repo with Octocode">
             <img src="images/story-5-octocode.png" alt="Eyal at a monitor with Octocode the friendly octopus exploring the repo" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
           </div>
-          <figcaption><span class="story-num">6</span><span><strong>Into the repo.</strong> Eyal + Octocode map Studio's git.</span></figcaption>
+          <figcaption><span class="story-num">7</span><span><strong>Into the repo.</strong> Eyal + Octocode map Studio's git.</span></figcaption>
         </figure>
-        <figure class="story-slide" data-idx="7">
+        <figure class="story-slide" data-idx="8">
           <div class="story-art" data-fallback="Rodi sketches the test plan while Nohar reviews Eyal's code">
             <img src="images/story-7-plan-and-review.png" alt="Split scene: Rodi sketches the A/B test plan on a whiteboard while Nohar reviews Eyal's code" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
           </div>
-          <figcaption><span class="story-num">7</span><span><strong>Plan + review.</strong> Rodi drafts the A/B test. Nohar approves Eyal's code.</span></figcaption>
+          <figcaption><span class="story-num">8</span><span><strong>Plan + review.</strong> Rodi drafts the A/B test. Nohar approves Eyal's code.</span></figcaption>
         </figure>
-        <figure class="story-slide" data-idx="8">
+        <figure class="story-slide" data-idx="9">
           <div class="story-art" data-fallback="Rodi and Eyal launch the A/B test, dollar bills flying">
             <img src="images/story-8-launch.png" alt="Rodi and Eyal celebrate launching the A/B test as cartoon dollar bills fly through the office" onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;" />
           </div>
-          <figcaption><span class="story-num">8</span><span><strong>Launch.</strong> Test live. Dollar bills in flight.</span></figcaption>
+          <figcaption><span class="story-num">9</span><span><strong>Launch.</strong> Test live. Dollar bills in flight.</span></figcaption>
         </figure>
       </div>
       <button class="story-nav next" data-story-next aria-label="Next panel">&#10095;</button>
@@ -974,60 +912,13 @@
         <button class="dot" data-story-go="6" aria-label="Panel 6"></button>
         <button class="dot" data-story-go="7" aria-label="Panel 7"></button>
         <button class="dot" data-story-go="8" aria-label="Panel 8"></button>
+        <button class="dot" data-story-go="9" aria-label="Panel 9"></button>
       </div>
     </div>
     <div class="slide-num">05</div>
   </section>
 
-  <!-- 6. The Guardrails -->
-  <section class="slide compact" data-title="Guardrails">
-    <div class="slide-eyebrow">Strategic Guardrails &middot; Why Blank only</div>
-    <h1>Same change, <span class="grad-text">opposite effect.</span></h1>
-    <div class="guardrails-layout">
-      <div class="template-carousel" id="templateCarousel" data-active="1" data-total="2">
-        <button class="story-nav prev" data-template-prev aria-label="Previous templates">&#10094;</button>
-        <div class="template-stage">
-          <div class="template-page is-active" data-idx="1">
-            <figure class="template-slide">
-              <img src="images/template-overlap-1.png" alt="Portfolio template hero hidden by Add Panel" />
-              <figcaption>Portfolio &middot; hero + CTA clipped</figcaption>
-            </figure>
-            <figure class="template-slide">
-              <img src="images/template-overlap-2.png" alt="SaaS template headline hidden by Add Panel" />
-              <figcaption>SaaS &middot; headline clipped</figcaption>
-            </figure>
-          </div>
-          <div class="template-page" data-idx="2">
-            <figure class="template-slide">
-              <img src="images/template-overlap-3.png" alt="Brand agency template hero hidden by Add Panel" />
-              <figcaption>Brand &middot; hero copy hidden</figcaption>
-            </figure>
-            <figure class="template-slide">
-              <img src="images/template-overlap-4.png" alt="Construction template nav covered by Add Panel" />
-              <figcaption>Construction &middot; nav covered</figcaption>
-            </figure>
-          </div>
-        </div>
-        <button class="story-nav next" data-template-next aria-label="Next templates">&#10095;</button>
-        <div class="story-dots" data-template-dots>
-          <button class="dot is-active" data-template-go="1" aria-label="Templates 1 and 2"></button>
-          <button class="dot" data-template-go="2" aria-label="Templates 3 and 4"></button>
-        </div>
-      </div>
-      <div class="rationale-block">
-        <div class="quote">
-          On <strong>Templates</strong>, the Add Panel <strong>occludes the very value the user just chose</strong>. Their first impression is a panel, not a polished site.
-        </div>
-        <div class="quote dim">
-          On <strong>Blank sites</strong>, there is nothing to occlude. The panel adds pure affordance with zero cost.
-        </div>
-        <div class="closing-line">Context, not the component, decides.</div>
-      </div>
-    </div>
-    <div class="slide-num">06</div>
-  </section>
-
-  <!-- 7. The Test (A/B Framework) -->
+  <!-- 6. The Test (A/B Framework) -->
   <section class="slide" data-title="The Test">
     <div class="slide-eyebrow">The Test &middot; A/B Framework</div>
     <h1>How we'll know it worked.</h1>
@@ -1063,10 +954,10 @@
       <div class="label">Population: first-session users on Blank sites &middot; 1/3 of new users</div>
       <div class="meta">A/B running &middot; monitoring active</div>
     </div>
-    <div class="slide-num">07</div>
+    <div class="slide-num">06</div>
   </section>
 
-  <!-- 8. What's Next -->
+  <!-- 7. What's Next -->
   <section class="slide" data-title="What's Next">
     <div class="slide-eyebrow">What's Next</div>
     <h1>The biggest loss is the <span class="grad-text">idea you never test.</span></h1>
@@ -1104,10 +995,10 @@
     <div class="next-callout">
       <strong>The takeaway:</strong> trust the intuition. Run the test. Let the data settle it.
     </div>
-    <div class="slide-num">08</div>
+    <div class="slide-num">07</div>
   </section>
 
-  <!-- 9. Questions -->
+  <!-- 8. Questions -->
   <section class="slide" data-title="Questions">
     <div class="slide-eyebrow">Q &amp; A</div>
     <div class="center-slide">
@@ -1125,7 +1016,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-num">09</div>
+    <div class="slide-num">08</div>
   </section>
 
 </main>
@@ -1157,9 +1048,6 @@
     if (btn && btn.scrollIntoView) btn.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
     if (typeof storyGo === 'function' && slides[current].querySelector('#storyCarousel')) {
       storyGo(1);
-    }
-    if (typeof templateGo === 'function' && slides[current].querySelector('#templateCarousel')) {
-      templateGo(1);
     }
     if (typeof nextReveal === 'function' && slides[current].querySelector('#nextGrid')) {
       nextReveal(1);
@@ -1193,31 +1081,6 @@
     return storyCarousel && slides[current] === storyCarousel.closest('.slide');
   }
   storyGo(1);
-
-  const templateCarousel = document.getElementById('templateCarousel');
-  let templateIdx = 1;
-  const templateTotal = templateCarousel ? parseInt(templateCarousel.dataset.total, 10) : 0;
-  const templateSlideEls = templateCarousel ? templateCarousel.querySelectorAll('.template-page') : [];
-  const templateDotEls = templateCarousel ? templateCarousel.querySelectorAll('[data-template-go]') : [];
-  const templatePrev = templateCarousel ? templateCarousel.querySelector('[data-template-prev]') : null;
-  const templateNext = templateCarousel ? templateCarousel.querySelector('[data-template-next]') : null;
-
-  function templateGo(n) {
-    if (!templateCarousel) return;
-    templateIdx = Math.max(1, Math.min(templateTotal, n));
-    templateSlideEls.forEach(el => el.classList.toggle('is-active', parseInt(el.dataset.idx, 10) === templateIdx));
-    templateDotEls.forEach(el => el.classList.toggle('is-active', parseInt(el.dataset.templateGo, 10) === templateIdx));
-    if (templatePrev) templatePrev.disabled = templateIdx === 1;
-    if (templateNext) templateNext.disabled = templateIdx === templateTotal;
-    templateCarousel.dataset.active = templateIdx;
-  }
-  if (templatePrev) templatePrev.addEventListener('click', () => templateGo(templateIdx - 1));
-  if (templateNext) templateNext.addEventListener('click', () => templateGo(templateIdx + 1));
-  templateDotEls.forEach(d => d.addEventListener('click', () => templateGo(parseInt(d.dataset.templateGo, 10))));
-  function isOnTemplateSlide() {
-    return templateCarousel && slides[current] === templateCarousel.closest('.slide');
-  }
-  templateGo(1);
 
   const nextGrid = document.getElementById('nextGrid');
   const nextHint = document.getElementById('revealHint');
@@ -1256,13 +1119,11 @@
       case 'PageDown':
       case ' ':
         if (isOnStorySlide() && storyIdx < storyTotal) { e.preventDefault(); storyGo(storyIdx + 1); break; }
-        if (isOnTemplateSlide() && templateIdx < templateTotal) { e.preventDefault(); templateGo(templateIdx + 1); break; }
         if (isOnNextSlide() && nextRevealed < nextTotal) { e.preventDefault(); nextReveal(nextRevealed + 1); break; }
         e.preventDefault(); go(current + 1); break;
       case 'ArrowLeft':
       case 'PageUp':
         if (isOnStorySlide() && storyIdx > 1) { e.preventDefault(); storyGo(storyIdx - 1); break; }
-        if (isOnTemplateSlide() && templateIdx > 1) { e.preventDefault(); templateGo(templateIdx - 1); break; }
         if (isOnNextSlide() && nextRevealed > 1) { e.preventDefault(); nextReveal(nextRevealed - 1); break; }
         e.preventDefault(); go(current - 1); break;
       case 'Home':

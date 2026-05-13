@@ -652,6 +652,7 @@
       <button data-size="l">L</button>
     </div>
     <button id="themeToggle" title="Toggle theme">Light</button>
+    <button id="fullscreenToggle" title="Toggle fullscreen (F)" aria-label="Toggle fullscreen">Fullscreen</button>
   </div>
 </header>
 
@@ -1056,6 +1057,33 @@
     const cur = document.body.dataset.theme === 'light' ? 'dark' : 'light';
     document.body.dataset.theme = cur;
     themeBtn.textContent = cur === 'light' ? 'Dark' : 'Light';
+  });
+
+  const fsBtn = document.getElementById('fullscreenToggle');
+  function fsElement() {
+    return document.fullscreenElement || document.webkitFullscreenElement || null;
+  }
+  function enterFs() {
+    const el = document.documentElement;
+    const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (fn) fn.call(el).catch(() => {});
+  }
+  function exitFs() {
+    const fn = document.exitFullscreen || document.webkitExitFullscreen;
+    if (fn) fn.call(document).catch(() => {});
+  }
+  function toggleFs() {
+    if (fsElement()) exitFs(); else enterFs();
+  }
+  function syncFsBtn() {
+    fsBtn.textContent = fsElement() ? 'Exit' : 'Fullscreen';
+  }
+  fsBtn.addEventListener('click', toggleFs);
+  document.addEventListener('fullscreenchange', syncFsBtn);
+  document.addEventListener('webkitfullscreenchange', syncFsBtn);
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFs(); }
   });
 })();
 </script>
